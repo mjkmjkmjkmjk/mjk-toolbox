@@ -1,0 +1,55 @@
+{
+  "id": "/tomcat/ucr/host",
+  "cmd": "env | sort && sed -i -e \"s/8080/${PORT0}/g\" -e \"s/8005/${PORT1}/g\" -e \"s/8009/${PORT2}/g\" $CATALINA_HOME/conf/server.xml && $CATALINA_HOME/bin/catalina.sh run",
+  "cpus": 1,
+  "mem": 256,
+  "instances": 2,
+  "container": {
+    "type": "MESOS",
+    "docker": {
+      "image": "tomcat:8.5-jre8-alpine"
+    }
+  },
+  "portDefinitions": [
+    {
+      "port": 0,
+      "name": "http",
+      "protocol": "tcp",
+      "labels": {
+        "VIP_0": "/tomcat.ucr.host:8080"
+      }
+    },
+    {
+      "port": 0,
+      "name": "shutdown",
+      "protocol": "tcp",
+      "labels": {
+        "VIP_1": "/tomcat.ucr.host:8005"
+      }
+    },
+    {
+      "port": 0,
+      "name": "ajp",
+      "protocol": "tcp",
+      "labels": {
+        "VIP_2": "/tomcat.ucr.host:8009"
+      }
+    }
+  ],
+  "healthChecks": [
+    {
+      "protocol": "MESOS_HTTP",
+      "path": "/",
+      "portIndex": 0,
+      "gracePeriodSeconds": 30,
+      "intervalSeconds": 20,
+      "timeoutSeconds": 10,
+      "maxConsecutiveFailures": 3
+    }
+  ],
+  "labels": {
+    "HAPROXY_GROUP": "external",
+    "HAPROXY_0_ENABLED": "true",
+    "HAPROXY_0_VHOST": "vhost.example.com"
+  }
+}

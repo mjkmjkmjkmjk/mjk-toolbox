@@ -1,0 +1,20 @@
+{
+  "windows": [
+    {
+      "machine_ids": [
+        {
+          "hostname": "10.0.7.107",
+          "ip": "10.0.7.107"
+        }
+      ],
+      "unavailability": {
+        "start": {
+          "nanoseconds": 1510265617000000000
+        },
+        "duration": {
+          "nanoseconds": 86400000000000
+        }
+      }
+    }
+  ]
+}

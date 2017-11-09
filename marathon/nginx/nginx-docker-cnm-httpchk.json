@@ -1,0 +1,45 @@
+{
+  "id": "/nginx/docker/cnm/httpchk",
+  "instances": 2,
+  "cpus": 0.01,
+  "mem": 32,
+  "cmd": "env | sort && nginx -g \"daemon off;\"",
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "nginx:alpine",
+      "network": "USER",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "name": "http",
+          "protocol": "tcp",
+          "labels": {
+            "VIP_0": "/nginx.docker.cnm.httpchk:80"
+          }
+        }
+      ]
+    }
+  },
+  "ipAddress": {
+    "networkName": "dcos"
+  },
+  "healthChecks": [
+    {
+      "protocol": "MESOS_HTTP",
+      "path": "/",
+      "portIndex": 0,
+      "gracePeriodSeconds": 30,
+      "intervalSeconds": 20,
+      "timeoutSeconds": 10,
+      "maxConsecutiveFailures": 3
+    }
+  ],
+  "labels": {
+    "HAPROXY_GROUP": "external",
+    "HAPROXY_0_ENABLED": "true",
+    "HAPROXY_0_VHOST": "vhost.example.com",
+    "HAPROXY_0_PATH": "/nginx/docker/cnm/httpchk",
+    "HAPROXY_0_HTTP_BACKEND_PROXYPASS_PATH": "/nginx/docker/cnm/httpchk"
+  }
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-0003",
+    "name": "cassandra",
+    "role": "cassandra-role",
+    "principal": "cassandra-principal",
+    "active": true,
+    "tasks": [
+      {
+        "name": "node-0-server",
+        "framework_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-0003",
+        "slave_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-S6",
+        "resources": {
+          "disk": 0,
+          "mem": 4096,
+          "gpus": 0,
+          "cpus": 0.5,
+          "ports": "[7000-7001, 7199-7199, 9042-9042, 9160-9160]"
+        }
+      },
+      {
+        "name": "node-1-server",
+        "framework_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-0003",
+        "slave_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-S8",
+        "resources": {
+          "disk": 0,
+          "mem": 4096,
+          "gpus": 0,
+          "cpus": 0.5,
+          "ports": "[7000-7001, 7199-7199, 9042-9042, 9160-9160]"
+        }
+      },
+      {
+        "name": "node-2-server",
+        "framework_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-0003",
+        "slave_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-S9",
+        "resources": {
+          "disk": 0,
+          "mem": 4096,
+          "gpus": 0,
+          "cpus": 0.5,
+          "ports": "[7000-7001, 7199-7199, 9042-9042, 9160-9160]"
+        }
+      }
+    ]
+  },
+  {
+    "id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-0004",
+    "name": "kafka",
+    "role": "kafka-role",
+    "principal": "kafka-principal",
+    "active": true,
+    "tasks": [
+      {
+        "name": "kafka-0-broker",
+        "framework_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-0004",
+        "slave_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-S8",
+        "resources": {
+          "disk": 5000,
+          "mem": 2048,
+          "gpus": 0,
+          "cpus": 1,
+          "ports": "[1025-1025]"
+        }
+      },
+      {
+        "name": "kafka-1-broker",
+        "framework_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-0004",
+        "slave_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-S6",
+        "resources": {
+          "disk": 5000,
+          "mem": 2048,
+          "gpus": 0,
+          "cpus": 1,
+          "ports": "[1025-1025]"
+        }
+      },
+      {
+        "name": "kafka-2-broker",
+        "framework_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-0004",
+        "slave_id": "9286b32b-b41a-4603-9a1a-a13b3c3bf5f3-S4",
+        "resources": {
+          "disk": 5000,
+          "mem": 2048,
+          "gpus": 0,
+          "cpus": 1,
+          "ports": "[1025-1025]"
+        }
+      }
+    ]
+  }
+]

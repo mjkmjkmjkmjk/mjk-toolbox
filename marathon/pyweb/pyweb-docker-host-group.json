@@ -1,0 +1,74 @@
+{
+  "id": "/pyweb-docker-host-group",
+  "apps": [
+    {
+      "id": "/pyweb-docker-host-group/controller",
+      "cmd": "env | sort && python3 -m http.server $PORT0",
+      "cpus": 0.01,
+      "mem": 32,
+      "instances": 1,
+      "container": {
+        "type": "DOCKER",
+        "docker": {
+          "image": "python:3-alpine",
+          "network": "HOST"
+        }
+      },
+      "portDefinitions": [
+	{
+	  "port": 0,
+	  "name": "pyweb-controller",
+	  "protocol": "tcp",
+	  "labels": { "VIP_0": "/pyweb-docker-host-group/controller:80" }
+	}
+      ],
+      "healthChecks": [
+        {
+          "protocol": "HTTP",
+          "path": "/",
+          "portIndex": 0,
+          "gracePeriodSeconds": 20,
+          "intervalSeconds": 20,
+          "timeoutSeconds": 20,
+          "maxConsecutiveFailures": 3
+        }
+      ]
+    },
+    {
+      "id": "/pyweb-docker-host-group/agent",
+      "cmd": "env | sort && python3 -m http.server $PORT0",
+      "cpus": 0.01,
+      "mem": 32,
+      "instances": 4,
+      "container": {
+        "type": "DOCKER",
+        "docker": {
+          "image": "python:3-alpine",
+          "network": "HOST"
+        }
+      },
+      "portDefinitions": [
+	{
+	  "port": 0,
+	  "name": "pyweb-agent",
+	  "protocol": "tcp",
+	  "labels": { "VIP_0": "/pyweb-docker-host-group/agent:80" }
+	}
+      ],
+      "healthChecks": [
+        {
+          "protocol": "HTTP",
+          "path": "/",
+          "portIndex": 0,
+          "gracePeriodSeconds": 20,
+          "intervalSeconds": 20,
+          "timeoutSeconds": 20,
+          "maxConsecutiveFailures": 3
+        }
+      ],
+      "dependencies": [
+        "/pyweb-docker-host-group/controller"
+      ]
+    }
+  ]
+}
