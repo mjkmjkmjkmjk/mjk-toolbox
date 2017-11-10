@@ -41,6 +41,7 @@ elif len(time_provided) == 19:
     a_billion = 1000 * 1000 * 1000  #  a billion!
     print('{}\tNANOSECONDS(since the epoch) is:\t{}'.format( time_provided, epoch_to_human(int(time_provided) // a_billion)))
 else:
-    print("Wait.... I'm confused! = {} digits??? Seconds since the epoch is typically 10, nanoseconds is 19.".format(len(time_provided)))
+    time_provided_in_minutes = int(time_provided) / ( 60 * 1000 * 1000 * 1000 )
+    print("Wait.... I'm confused! = {} digits???  That amounts to just {} minutes.   Seconds since the epoch is typically 10, (nanoseconds is 19).".format(len(time_provided), time_provided_in_minutes))
 
 
