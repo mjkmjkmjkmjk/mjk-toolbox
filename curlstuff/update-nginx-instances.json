@@ -1,0 +1,4 @@
+{
+  "id": "/nginx/docker/host/httpchk",
+  "instances": 2
+}

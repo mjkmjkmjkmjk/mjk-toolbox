@@ -1,0 +1,9 @@
+{
+  "id": "/nginx/docker/host/httpchk",
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "nginx:latest"
+    }
+}
+}

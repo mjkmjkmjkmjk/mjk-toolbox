@@ -1,0 +1,17 @@
+# Useful commands
+exit 2
+
+
+
+#  dcos --debug marathon app add nginx.json
+#  dcos --debug marathon app update /nginx/docker/host/httpchk < update-nginx-instances.json 
+#  dcos --debug marathon app update /nginx/docker/host/httpchk < update-nginx-healthcheck.json 
+
+
+
+
+# bash -x ./curl.sh POST ./nginx.json			''					| jq
+# bash -x ./curl.sh GET   /dev/null                     /nginx/docker/host/httpchk/versions	| jq
+# bash -x ./curl.sh PUT ./update-nginx-instances.json   /nginx/docker/host/httpchk		| jq
+# bash -x ./curl.sh PUT ./update-nginx-healthcheck.json /nginx/docker/host/httpchk		| jq
+# bash -x ./curl.sh PUT ./update-nginx-image.json       /nginx/docker/host/httpchk		| jq

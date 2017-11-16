@@ -1,0 +1,14 @@
+{
+  "id": "/nginx/docker/host/httpchk",
+  "healthChecks": [
+    {
+      "protocol": "MESOS_HTTP",
+      "path": "/",
+      "portIndex": 0,
+      "gracePeriodSeconds": 60,
+      "intervalSeconds": 20,
+      "timeoutSeconds": 10,
+      "maxConsecutiveFailures": 3
+    }
+  ]
+}
